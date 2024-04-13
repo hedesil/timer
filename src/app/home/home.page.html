@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Welcome</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="container">
+    <ion-item>
+      <ion-datetime
+        [showDefaultTitle]="true"
+        presentation="date-time"
+        [preferWheel]="true"
+        [(ngModel)]="alarmTime"
+      >
+        <span slot="title">Select an alarm date</span>
+      </ion-datetime>
+    </ion-item>
+    <ion-button expand="full" (click)="setAlarm()">Save Alarm</ion-button>
+    <ion-list>
+      <ion-item *ngFor="let alarm of alarms; let i = index">
+        <ion-label>{{ alarm.time | date: 'd/MM/yyyy - H:mm' }}</ion-label>
+        <ion-button (click)="deleteAlarm(i)">Delete</ion-button>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
